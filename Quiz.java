@@ -32,16 +32,15 @@ public class Quiz {
             // return score in the end
         }
         
-        public static void learn(String questions[], String answers[]) {
-            // for loop 0 - 17 
-            // print the q and answer 
-            
-            // layout
-            // Q [i] - adfsdfsd
-            // A [i] - adhsdfdsdfsd
-            
-            // q [2]
-
+    public static void learn(String questions[], String answers[]) {
+        // for loop 0 - 17 
+        // print the q and answer 
+        
+        // layout
+        // Q [i] - adfsdfsd
+        // A [i] - adhsdfdsdfsd
+        
+        // q [2]
     }
     
     public static int test(String questions[], String answers[]) {
