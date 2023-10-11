@@ -1,28 +1,49 @@
+import java.util.Scanner;
+
 public class Quiz {
     public static void main(String[] args) throws Exception {
         // Creating arrays
-
-        // create array of questions and options
+                 // create array of questions and options
             //format - one string for each question 
                 // initial question
                     // (a) option 1
-                    // (b) option 2
+                    // (b) option 2 
                     // (c) option 3
 
                 // new question 
                     // (a) option 1
                     // (b) option 2
                     // (c) option 3
+        String[] questions = new String[6];
 
-
+        questions[0] = "Which of the following is a prime number\n  a. 4\n  b. 9\n  c. 13";
+        questions[1] = "If a set has 5 elements, how many subsets does it have?\n  a. 5\n  b. 10\n  c. 32";
+        questions[2] = "Which of the following is not a type of computer memory?\n  a. RAM\n  b. CPU\n  c. ROM";
+        questions[3] = "In which part of the computer is data processed?\n  a. Hard Drive\n  b. RAM\n  c. CPU";
+        questions[4] = "Which of the following is considered a high-level programming language?\n  a. Machine Language\n  b. Python\n  c. Assembly Language";
+        questions[5] = "What does the acronym 'URL' stand for?\n  a. Universal Resource Locator\n  b. Unified Retrieval Logic\n  c. Uniform Resource Locator";
+        
         // create array of answers - same index
             // format 
                 // letter
 
+        char[] answers = new char[6];
+        answers[0]= 'c';
+        answers[1]= 'c';
+        answers[2]= 'b';
+        answers[3]= 'c';
+        answers[4]= 'b';
+        answers[5]= 'c';
+
         // User Interation
+        Scanner scanner = new Scanner(System.in);
 
         // ask username 
+        System.out.print("Enter your username: ");
+        String username = scanner.next();
         // ask password
+        System.out.print("Enter your password: ");
+        String password = scanner.next();
 
         // Print Welcome 
         // Learn / Test
@@ -43,7 +64,7 @@ public class Quiz {
 
     }
     
-    public static int test(String questions[], String answers[]) {
+    public static int test(String questions[], char answers[]) {
         // create variable for score
         
         // create for loop 0-5 (qs)
