@@ -6,17 +6,17 @@ import java.util.Scanner;
 public class Quiz {
     public static void main(String[] args) throws Exception {
         // Creating arrays
-                 // create array of questions and options
-            //format - one string for each question 
-                // initial question
-                    // (a) option 1
-                    // (b) option 2 
-                    // (c) option 3
+        // create array of questions and options
+        // format - one string for each question
+        // initial question
+        // (a) option 1
+        // (b) option 2
+        // (c) option 3
 
-                // new question 
-                    // (a) option 1
-                    // (b) option 2
-                    // (c) option 3
+        // new question
+        // (a) option 1
+        // (b) option 2
+        // (c) option 3
         String[] questions = new String[6];
 
         questions[0] = "Which of the following is a prime number\n  a. 4\n  b. 9\n  c. 13";
@@ -25,32 +25,32 @@ public class Quiz {
         questions[3] = "In which part of the computer is data processed?\n  a. Hard Drive\n  b. RAM\n  c. CPU";
         questions[4] = "Which of the following is considered a high-level programming language?\n  a. Machine Language\n  b. Python\n  c. Assembly Language";
         questions[5] = "What does the acronym 'URL' stand for?\n  a. Universal Resource Locator\n  b. Unified Retrieval Logic\n  c. Uniform Resource Locator";
-        
+
         // create array of answers - same index
-            // format 
-                // letter
+        // format
+        // letter
 
         char[] answers = new char[6];
-        answers[0]= 'c';
-        answers[1]= 'c';
-        answers[2]= 'b';
-        answers[3]= 'c';
-        answers[4]= 'b';
-        answers[5]= 'c';
+        answers[0] = 'c';
+        answers[1] = 'c';
+        answers[2] = 'b';
+        answers[3] = 'c';
+        answers[4] = 'b';
+        answers[5] = 'c';
 
         // User Interation
         Scanner scanner = new Scanner(System.in);
 
-        // ask username 
+        // ask username
         System.out.print("Enter your username: ");
         String username = scanner.next();
         // ask password
         System.out.print("Enter your password: ");
         String password = scanner.next();
 
-        // Print Welcome 
+        // Print Welcome
         // Learn / Test
-            // if statement - if t- call test 
+        // if statement - if t- call test
 
             // return score in the end
 
