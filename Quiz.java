@@ -96,7 +96,7 @@ public class Quiz {
     
     public static int test(String questions[], char answers[]) {
         // create variable for score
-        score = 0
+        score = 0;
         // create for loop 0-5 (qs)
         // print  qs and options
         for(i = 0; i < 6;i++) {
