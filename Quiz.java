@@ -76,7 +76,7 @@ public class Quiz {
         scanner.close();
     }
         
-    public static void learn(String questions[], String answers[]) {
+    public static void learn(String questions[], char answers[]) {
         // for loop 0 - 17 
         // print the q and answer 
         for (i = 0; i < questions.length; i++) {
@@ -96,7 +96,7 @@ public class Quiz {
     
     public static int test(String questions[], char answers[]) {
         // create variable for score
-        score = 0
+        score = 0;
         // create for loop 0-5 (qs)
         // print  qs and options
         for(i = 0; i < 6;i++) {
