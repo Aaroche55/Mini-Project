@@ -100,6 +100,26 @@ public class realeGUI {
                     ex.printStackTrace();
                 }
             }
-        });        
+        });   
+        
+        
+        formPanel.add(headingLabel);
+        formPanel.add(usernameHeadingLabel);
+
+        // Add labels and text fields to the formPanel
+        formPanel.add(usernameLabel);
+        formPanel.add(usernameField);
+        formPanel.add(passwordLabel);
+        formPanel.add(passwordField);
+
+        // Add buttons to the formPanel
+        formPanel.add(loginButton);
+        formPanel.add(signUpButton);
+
+        // Add the formPanel to the frame
+        frame.add(formPanel); // This line is necessary to display the components
+
+        // Make the frame visible
+        frame.setVisible(true);
     } 
 }
