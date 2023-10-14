@@ -1,4 +1,4 @@
-package gui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +17,7 @@ public class realeGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 300); // Adjusted size
         frame.setLayout(new BorderLayout());
+        frame.setVisible(true);
 
         // Center the frame on the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -65,15 +66,17 @@ public class realeGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // You can add login logic here
-                String username = usernameField.getText();
-                String password = new String(passwordField.getPassword());
-                // Check username and password
-                Authentication auth = new Authentication();
-                auth.check();
-                if (check(username, password)) {
-                    JOptionPane.showMessageDialog(frame, "Login successful");
-                } else {
-                    JOptionPane.showMessageDialog(frame, "Login failed. Please check your credentials.");
+        	    try {
+                    String username = usernameField.getText();
+                    String password = new String(passwordField.getPassword());
+                    boolean check = Authentication.check(username, password);
+                    if (check) {
+                        JOptionPane.showMessageDialog(frame, "Login successful");
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Login failed. Please check your credentials.");
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
         });
@@ -85,15 +88,18 @@ public class realeGUI {
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	Authentication auth = new Authentication();
-                auth.signup();
-                if(signup(username, password)) {
-                JOptionPane.showMessageDialog(frame, "Account creation successful");
-                }
-                else {JOptionPane.showMessageDialog(frame, "Account creation successful");
+            	try {
+                    String username = usernameField.getText();
+                    String password = new String(passwordField.getPassword());
+                    if (Authentication.signup(username, password)) {
+                        JOptionPane.showMessageDialog(frame, "Account created successfully.");
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Account creation failed.");
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
-        });
-        
+        });        
     } 
 }
