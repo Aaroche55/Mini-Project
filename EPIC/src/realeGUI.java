@@ -100,9 +100,7 @@ public class realeGUI {
                     ex.printStackTrace();
                 }
             }
-        });   
-        
-        
+        });     
         formPanel.add(headingLabel);
         formPanel.add(usernameHeadingLabel);
 
