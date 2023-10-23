@@ -22,7 +22,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>QuizManager.java</mainClass>
+                  <mainClass>QuizManager</mainClass>
                 </transformer>
               </transformers>
             </configuration>
