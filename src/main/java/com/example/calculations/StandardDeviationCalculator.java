@@ -6,15 +6,34 @@ import com.example.utilities.ScoreUtil;
 
 public class StandardDeviationCalculator {
 
-    public static double get_standardDeviation(String username) {
-        List<Integer> scores = ScoreUtil.fetchUserScores(username);
-        double mean = MeanCalculator.get_mean(username);
-        double variance = 0;
-
-        for (int score : scores) {
-            variance += Math.pow(score - mean, 2);
+    public static double[] get_standardDeviation(String username) {
+        double[] std_devs = new double[8];
+        String[] modes = {"novice", "intermediate", "advanced", "quickfire"};
+        int mode_counter = 0;
+        for (int i = 0; i < 8; i += 2) {
+            std_devs[i] = getUsersStdDevByMode(username, modes[mode_counter]);
+            std_devs[i + 1] = getAllUsersStdDevByMode(modes[mode_counter]);
+            mode_counter++;
         }
+        return std_devs;
+    }
 
-        return Math.sqrt(variance / scores.size());
+    public static double getUsersStdDevByMode(String username, String mode) {
+        List<Integer> scores = ScoreUtil.fetchUserScoresByMode(username, mode);
+        return calculateStdDev(scores);
+    }
+
+    public static double getAllUsersStdDevByMode(String mode) {
+        List<Integer> scores = ScoreUtil.fetchAllScoresByMode(mode);
+        return calculateStdDev(scores);
+    }
+
+    private static double calculateStdDev(List<Integer> scores) {
+        int n = scores.size();
+        if (n <= 1) return 0;
+        
+        double mean = scores.stream().mapToDouble(i -> i).average().orElse(0);
+        double variance = scores.stream().mapToDouble(i -> (i - mean) * (i - mean)).sum() / n;
+        return Math.sqrt(variance);
     }
 }

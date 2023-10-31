@@ -40,6 +40,5 @@ CREATE TABLE IF NOT EXISTS scores (
     username TEXT,
     quiz_mode TEXT,
     score INTEGER,
-    difficulty TEXT,
     FOREIGN KEY (username) REFERENCES users(username)
 );
