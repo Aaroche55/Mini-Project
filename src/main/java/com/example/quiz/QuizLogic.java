@@ -95,13 +95,6 @@ public class QuizLogic {
     }
 
     public static void main(String[] args) throws SQLException {
-
-        List<?> questions = processQueryResults(randomQuestions, "questions");
-        List<?> options = processQueryResults(randomQuestions, "options");
-        List<?> answers = processQueryResults(randomQuestions, "answer");
-
-        System.out.println(questions.get(0).toString());
-        System.out.println(options.get(0).toString());
-        System.out.println(answers.get(0).toString());
+        System.out.println(getQuestionsByDifficulty("NOVICE", "answer"));
     }
 }

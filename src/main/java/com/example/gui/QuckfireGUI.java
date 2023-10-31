@@ -67,19 +67,22 @@ public class QuckfireGUI {
     startButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (i < 6) {
-                textAreaQ.setText("Question: " + QuizLogic.get_questions().get(i).toString());
-                textAreaO.setText("Options: " + QuizLogic.get_options().get(i).toString());                   
-            } else if (i == 6) {
-                JOptionPane.showMessageDialog(null, "You have completed the Quickfire Round!\nYour score is: " + score + "/6");
-                quickfireFrame.dispose();
-            }           
-            
+            // Check the answer before moving to the next question
             String answer = answerField.getText().toUpperCase();
-            if (answer.equals(QuizLogic.get_answers().get(i).toString())) {
+            if (i < QuizLogic.get_questions().size() && answer.equals(QuizLogic.get_answers().get(i).toString())) {
                 score++;
             }
+            
             i++;
+            
+            if (i < QuizLogic.get_questions().size()) {
+                textAreaQ.setText("Question: " + QuizLogic.get_questions().get(i).toString());
+                textAreaO.setText("Options: " + QuizLogic.get_options().get(i).toString());
+                answerField.setText(""); // Clear the answer field for the next answer                   
+            } else {
+                JOptionPane.showMessageDialog(null, "You have completed the Quickfire Round!\nYour score is: " + score + "/6");
+                quickfireFrame.dispose();
+            }
         }
     });
         
