@@ -72,9 +72,29 @@ public class QuizLogic {
         }
         return questionsList;
     }
+    
+    public static List<Map<String, Object>> randomQuestions;
+
+    static {
+        try {
+            randomQuestions = getRandomQuestions();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            randomQuestions = Collections.emptyList(); 
+        }
+    }
+    
+    public static List <?> get_questions() {
+        return processQueryResults(randomQuestions, "questions");
+    }
+    public static List <?> get_options() {
+        return processQueryResults(randomQuestions, "options");
+    }
+    public static List <?> get_answers() {
+        return processQueryResults(randomQuestions, "answer");
+    }
 
     public static void main(String[] args) throws SQLException {
-        List<Map<String, Object>> randomQuestions = getRandomQuestions();
 
         List<?> questions = processQueryResults(randomQuestions, "questions");
         List<?> options = processQueryResults(randomQuestions, "options");
