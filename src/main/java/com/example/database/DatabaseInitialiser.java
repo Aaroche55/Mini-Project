@@ -21,8 +21,8 @@ public class DatabaseInitialiser {
         
         try (Connection conn = DriverManager.getConnection(jdbcUrl)) {
 
-            executeSQLFile("src/main/resources/database_setup.sql", conn);
-            executeSQLFile("src/main/resources/questions_insert.sql", conn);
+            executeSQLFile("src/main/java/com/example/quiz/resources/database_setup.sql", conn);
+            executeSQLFile("src/main/java/com/example/quiz/resources/questions_insert.sql", conn);
 
             System.out.println("Database setup complete!");
 

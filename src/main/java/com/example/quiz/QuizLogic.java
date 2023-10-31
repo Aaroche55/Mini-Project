@@ -12,8 +12,8 @@ public class QuizLogic {
         return processQueryResults(executeQuery("SELECT * FROM Questions"), part);
     }
 
-    public static List<?> getRandomQuestions(String part) throws SQLException {
-        return processQueryResults(executeQuery("SELECT * FROM Questions ORDER BY RANDOM() LIMIT 6"), part);
+    public static List<Map<String, Object>> getRandomQuestions() throws SQLException {
+        return executeQuery("SELECT * FROM Questions ORDER BY RANDOM() LIMIT 6");
     }
 
     public static List<?> getQuestionsByDifficulty(String difficulty, String part) throws SQLException {
@@ -74,8 +74,14 @@ public class QuizLogic {
     }
 
     public static void main(String[] args) throws SQLException {
-        System.out.println(getAllQuestions("questions").get(0));
-        System.out.println(getRandomQuestions("options").get(0));
-        System.out.println(getQuestionsByDifficulty("NOVICE", "answer").get(0));
+        List<Map<String, Object>> randomQuestions = getRandomQuestions();
+
+        List<?> questions = processQueryResults(randomQuestions, "questions");
+        List<?> options = processQueryResults(randomQuestions, "options");
+        List<?> answers = processQueryResults(randomQuestions, "answer");
+
+        System.out.println(questions.get(0).toString());
+        System.out.println(options.get(0).toString());
+        System.out.println(answers.get(0).toString());
     }
 }
