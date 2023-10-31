@@ -10,10 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class NoviceGUI {
-     // Declare 'i' as a class-level field to maintain its state
+    // Declare 'i' as a class-level field to maintain its state
     @SuppressWarnings("unused")
     private static int i = 0;
     private static int score = 0;
+    private static boolean quizStarted = false;
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
            createAndShowGUI();
@@ -62,6 +63,7 @@ public class NoviceGUI {
 
 
     //Start/Submit button to fetch and display next question, and also to submit answer
+
     JButton startButton = new JButton("Start/Submit");
     startButton.setBackground(Color.BLUE);
     startButton.setForeground(Color.WHITE);
@@ -69,9 +71,18 @@ public class NoviceGUI {
     startButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
+
+            if (!quizStarted) {
+                // If the quiz hasn't started, set the flag and start the quiz
+                quizStarted = true;
+                return; // Exit the listener
+            } 
             // Check the answer before moving to the next question
             String answer = answerField.getText().toUpperCase();
             try {
+                System.out.println("User's answer: " + answer);
+                System.out.println("Expected answer: " + QuizLogic.getQuestionsByDifficulty("NOVICE", "answer").get(i).toString());
+
                 if (i < QuizLogic.getQuestionsByDifficulty("NOVICE", "questions").size() && answer.equals(QuizLogic.getQuestionsByDifficulty("NOVICE", "answer").get(i).toString())) {
                     score++;
                 }
