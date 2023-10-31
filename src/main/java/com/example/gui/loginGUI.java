@@ -9,10 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class loginGUI {
 
+    static String username;
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             createAndShowGUI();
         });
+    }
+    public static String getUsername() {
+        return username;
     }
 
     private static void createAndShowGUI() {
@@ -95,7 +99,7 @@ public class loginGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
             	try {
-                    String username = usernameField.getText();
+                    username = usernameField.getText();
                     String password = new String(passwordField.getPassword());
                     if (Authentication.signup(username, password)) {
                         JOptionPane.showMessageDialog(frame, "Account created successfully.");
@@ -128,4 +132,5 @@ public class loginGUI {
         // Make the frame visible
         frame.setVisible(true);
     } 
+     
 }

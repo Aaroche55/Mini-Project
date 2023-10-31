@@ -3,6 +3,8 @@ package com.example.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
+
+import com.example.database.ScoreLogger;
 import com.example.quiz.QuizLogic;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,25 +68,27 @@ public class NoviceGUI {
     startButton.setBounds(250, 150, 100, 30);
     startButton.addActionListener(new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent event) {
+            // Check the answer before moving to the next question
+            String answer = answerField.getText().toUpperCase();
             try {
-                if (i < 6) {
-                    textAreaQ.setText("Question: " + QuizLogic.getQuestionsByDifficulty("NOVICE", "questions").get(i).toString());
-                    textAreaO.setText("Options A, B, C: " + QuizLogic.getQuestionsByDifficulty("NOVICE", "options").get(i).toString());
-                   
-                } else if (i == 6) {
-                    JOptionPane.showMessageDialog(null, "You have completed the Quickfire Round!\nYour score is: " + score + "/6");
-                    noviceFrame.dispose();
-                }           
-                
-                String answer = answerField.getText().toUpperCase();
-                if (answer.equals(QuizLogic.getQuestionsByDifficulty("NOVICE", "answer").get(i).toString())) {
+                if (i < QuizLogic.getQuestionsByDifficulty("NOVICE", "questions").size() && answer.equals(QuizLogic.getQuestionsByDifficulty("NOVICE", "answer").get(i).toString())) {
                     score++;
                 }
                 i++;
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+                if (i < QuizLogic.getQuestionsByDifficulty("NOVICE", "questions").size()+1) {
+                    textAreaQ.setText("Question: " + QuizLogic.getQuestionsByDifficulty("NOVICE", "questions").get(i-1).toString());
+                    textAreaO.setText("Options A, B, C: " + QuizLogic.getQuestionsByDifficulty("NOVICE", "options").get(i-1).toString()); 
+                    answerField.setText(""); // Clear the answer field for the next answer    
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "You have completed the Quickfire Round!\nYour score is: " + score + "/6");
+                    ScoreLogger.log_score(loginGUI.getUsername(), "novice", score);
+                    noviceFrame.dispose();
+                }
+            } catch (SQLException e) {
+                // Handle the exception here
+                e.printStackTrace();
             }
         }
     });

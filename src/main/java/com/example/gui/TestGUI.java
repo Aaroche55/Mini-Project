@@ -85,7 +85,7 @@ public class TestGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                GUI.createAndShowGUI();
+                
             }
         });
 

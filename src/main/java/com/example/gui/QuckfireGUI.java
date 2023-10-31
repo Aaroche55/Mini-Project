@@ -1,5 +1,6 @@
 package com.example.gui;
 
+import com.example.database.ScoreLogger;
 import com.example.quiz.QuizLogic;
 import javax.swing.*;
 import java.awt.*;
@@ -75,12 +76,13 @@ public class QuckfireGUI {
             
             i++;
             
-            if (i < QuizLogic.get_questions().size()) {
-                textAreaQ.setText("Question: " + QuizLogic.get_questions().get(i).toString());
-                textAreaO.setText("Options: " + QuizLogic.get_options().get(i).toString());
+            if (i < QuizLogic.get_questions().size()+1) {
+                textAreaQ.setText("Question: " + QuizLogic.get_questions().get(i-1).toString());
+                textAreaO.setText("Options: " + QuizLogic.get_options().get(i-1).toString());
                 answerField.setText(""); // Clear the answer field for the next answer                   
             } else {
                 JOptionPane.showMessageDialog(null, "You have completed the Quickfire Round!\nYour score is: " + score + "/6");
+                ScoreLogger.log_score(loginGUI.getUsername(), "quickfire", score);
                 quickfireFrame.dispose();
             }
         }
