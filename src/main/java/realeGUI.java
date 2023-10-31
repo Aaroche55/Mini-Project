@@ -11,7 +11,7 @@ public class realeGUI {
         });
     }
 
-    private static void createAndShowGUI() {
+    static void createAndShowGUI() {
         //Frame for the login page
         JFrame frame = new JFrame("Login Page");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,6 +72,9 @@ public class realeGUI {
                     boolean check = Authentication.check(username, password);
                     if (check) {
                         JOptionPane.showMessageDialog(frame, "Login successful");
+                        frame.dispose();
+                        GUI.createAndShowGUI();
+                        
                     } else {
                         JOptionPane.showMessageDialog(frame, "Login failed. Please check your credentials.");
                     }
