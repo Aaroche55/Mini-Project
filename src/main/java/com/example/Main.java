@@ -1,13 +1,6 @@
 package com.example;
 
-import com.example.calculations.MeanCalculator;
-import com.example.calculations.MedianCalculator;
-//import com.example.authentication.Authentication;
-import com.example.leaderboard.Leaderboard;
-
-// import com.example.calculations.MeanCalculator;
-// import com.example.calculations.MedianCalculator;
-import com.example.calculations.StandardDeviationCalculator;
+import com.example.quiz.QuizLogic;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -20,8 +13,10 @@ public class Main {
         //     System.out.println();
         // }
 
-        Leaderboard.printLeaderboard();
-
+        System.out.println(QuizLogic.get_questions().get(0));
+        System.out.println(QuizLogic.get_options().get(0));
+        System.out.println(QuizLogic.get_answers().get(0));
+        
         
     }
 }
