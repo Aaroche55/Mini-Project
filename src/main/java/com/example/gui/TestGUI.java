@@ -43,7 +43,7 @@ public class TestGUI {
         subheadingLabel.setForeground(Color.GRAY);
         subheadingLabel.setBounds(215, 50, 300, 20); // Set coordinates and size
         
-        //Create 3 buttons, 
+        //Create 4 buttons, 
         JButton noviceButton = new JButton("Novice");
         noviceButton.setBackground(Color.RED);
         noviceButton.setForeground(Color.WHITE);
@@ -51,7 +51,7 @@ public class TestGUI {
         noviceButton.addActionListener(new ActionListener() {      //add action listener to the button
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                NoviceGUI.createAndShowGUI();
             }
         });
 
@@ -62,18 +62,30 @@ public class TestGUI {
         intermediateButton.addActionListener(new ActionListener() {     //add action listener to the button
             @Override
             public void actionPerformed(ActionEvent e) {
-                learnGUI.createAndShowGUI();
+                IntermediateGUI.createAndShowGUI();
             }
         });
 
         JButton advancedButton = new JButton("Advanced");
         advancedButton.setBackground(Color.RED);
         advancedButton.setForeground(Color.WHITE);
-        advancedButton.setBounds(197, 200, 200, 50);// Set coordinates and size
+        advancedButton.setBounds(50, 200, 200, 50);// Set coordinates and size
         advancedButton.addActionListener(new ActionListener() {      //add action listener to the button
             @Override
             public void actionPerformed(ActionEvent e) {
                 QuckfireGUI.createAndShowGUI();
+            }
+        });
+
+        JButton backButton = new JButton("Back");
+        backButton.setBackground(Color.BLUE);
+        backButton.setForeground(Color.WHITE);
+        backButton.setBounds(344, 200, 200, 50); // Set coordinates and size
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                GUI.createAndShowGUI();
             }
         });
 
@@ -85,6 +97,7 @@ public class TestGUI {
         formPanel.add(noviceButton);
         formPanel.add(intermediateButton);
         formPanel.add(advancedButton);
+        formPanel.add(backButton);
         
 
         //Add the panel to the frame

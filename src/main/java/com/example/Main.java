@@ -13,10 +13,13 @@ public class Main {
         //     System.out.println();
         // }
 
-        System.out.println(QuizLogic.get_questions().get(0));
-        System.out.println(QuizLogic.get_options().get(0));
-        System.out.println(QuizLogic.get_answers().get(0));
-        
+        for (int i = 0; i < 6; i++){
+            System.out.println(QuizLogic.get_questions().get(i));
+            System.out.println(QuizLogic.get_options().get(i));
+            System.out.println(QuizLogic.get_answers().get(i));
+            System.out.println();
+        }
+
         
     }
 }

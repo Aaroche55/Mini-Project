@@ -6,30 +6,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.*;
-import java.util.List;
 
 public class QuckfireGUI {
     // Declare 'i' as a class-level field to maintain its state
     @SuppressWarnings("unused")
     private static int i = 0;
     private static int score = 0;
-    List<Map<String, Object>> randomQuestions;
-
-    public QuckfireGUI() throws SQLException {
-        randomQuestions = QuizLogic.getRandomQuestions();
-    }
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            try {
-                QuckfireGUI gui = new QuckfireGUI();
-                gui.createAndShowGUI();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        });
-    }
+           createAndShowGUI();
+       });
+   }
    public static void createAndShowGUI(){
 
     JFrame quickfireFrame = new JFrame("Quickfire Round");
@@ -56,7 +43,7 @@ public class QuckfireGUI {
     textAreaQ.setWrapStyleWord(true);
     textAreaQ.setBackground(Color.LIGHT_GRAY);
     textAreaQ.setEditable(false);
-    textAreaQ.setFont(new Font("Arial", Font.PLAIN, 16));
+    textAreaQ.setFont(new Font("Arial", Font.PLAIN, 24));
 
     // Create a label to display options from QuizManager
     JTextArea textAreaO = new JTextArea();
@@ -65,7 +52,7 @@ public class QuckfireGUI {
     textAreaO.setWrapStyleWord(true);
     textAreaO.setBackground(Color.LIGHT_GRAY);
     textAreaO.setEditable(false);
-    textAreaO.setFont(new Font("Arial", Font.PLAIN, 16));
+    textAreaO.setFont(new Font("Arial", Font.PLAIN, 24));
 
     //Create text field for user to enter answer
     JTextField answerField = new JTextField("Please enter answer: A, B, or C");
@@ -80,25 +67,19 @@ public class QuckfireGUI {
     startButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                if (i < 6) {
-                    textAreaQ.setText("Question: " + QuizLogic.getRandomQuestions("questions").get(i).toString());
-                    textAreaO.setText("Options A, B, C: " + QuizLogic.getRandomQuestions("options").get(i).toString());
-                   
-                } else if (i == 6) {
-                    JOptionPane.showMessageDialog(null, "You have completed the Quickfire Round!\nYour score is: " + score + "/6");
-                    quickfireFrame.dispose();
-                }           
-                
-                String answer = answerField.getText().toUpperCase();
-                if (answer.equals(QuizLogic.getRandomQuestions("answer").get(i).toString())) {
-                    score++;
-                }
-                i++;
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+            if (i < 6) {
+                textAreaQ.setText("Question: " + QuizLogic.get_questions().get(i).toString());
+                textAreaO.setText("Options: " + QuizLogic.get_options().get(i).toString());                   
+            } else if (i == 6) {
+                JOptionPane.showMessageDialog(null, "You have completed the Quickfire Round!\nYour score is: " + score + "/6");
+                quickfireFrame.dispose();
+            }           
+            
+            String answer = answerField.getText().toUpperCase();
+            if (answer.equals(QuizLogic.get_answers().get(i).toString())) {
+                score++;
             }
+            i++;
         }
     });
         

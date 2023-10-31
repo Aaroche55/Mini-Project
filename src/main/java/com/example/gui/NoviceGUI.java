@@ -43,7 +43,7 @@ public class NoviceGUI {
     textAreaQ.setWrapStyleWord(true);
     textAreaQ.setBackground(Color.LIGHT_GRAY);
     textAreaQ.setEditable(false);
-    textAreaQ.setFont(new Font("Arial", Font.PLAIN, 16));
+    textAreaQ.setFont(new Font("Arial", Font.PLAIN, 24));
 
     // Create a label to display options from QuizManager
     JTextArea textAreaO = new JTextArea();
@@ -52,7 +52,7 @@ public class NoviceGUI {
     textAreaO.setWrapStyleWord(true);
     textAreaO.setBackground(Color.LIGHT_GRAY);
     textAreaO.setEditable(false);
-    textAreaO.setFont(new Font("Arial", Font.PLAIN, 16));
+    textAreaO.setFont(new Font("Arial", Font.PLAIN, 24));
 
     //Create text field for user to enter answer
     JTextField answerField = new JTextField("Please enter answer: A, B, or C");
@@ -69,8 +69,8 @@ public class NoviceGUI {
         public void actionPerformed(ActionEvent e) {
             try {
                 if (i < 6) {
-                    textAreaQ.setText("Question: " + QuizLogic.getQuestionsByDifficulty("novice", "questions").get(i).toString());
-                    textAreaO.setText("Options A, B, C: " + QuizLogic.getQuestionsByDifficulty("novice", "options").get(i).toString());
+                    textAreaQ.setText("Question: " + QuizLogic.getQuestionsByDifficulty("NOVICE", "questions").get(i).toString());
+                    textAreaO.setText("Options A, B, C: " + QuizLogic.getQuestionsByDifficulty("NOVICE", "options").get(i).toString());
                    
                 } else if (i == 6) {
                     JOptionPane.showMessageDialog(null, "You have completed the Quickfire Round!\nYour score is: " + score + "/6");
@@ -78,7 +78,7 @@ public class NoviceGUI {
                 }           
                 
                 String answer = answerField.getText().toUpperCase();
-                if (answer.equals(QuizLogic.getQuestionsByDifficulty("novice", "answer").get(i).toString())) {
+                if (answer.equals(QuizLogic.getQuestionsByDifficulty("NOVICE", "answer").get(i).toString())) {
                     score++;
                 }
                 i++;

@@ -52,7 +52,7 @@ public class GUI {
         test.addActionListener(new ActionListener() {      //add action listener to the button
             @Override
             public void actionPerformed(ActionEvent e) {
-                createAndShowTest();
+                TestGUI.createAndShowGUI();
             }
         });
 

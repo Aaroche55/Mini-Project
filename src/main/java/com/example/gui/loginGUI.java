@@ -76,6 +76,8 @@ public class loginGUI {
                     boolean check = Authentication.check(username, password);
                     if (check) {
                         JOptionPane.showMessageDialog(frame, "Login successful");
+                        frame.dispose();
+                        GUI.createAndShowGUI();
                     } else {
                         JOptionPane.showMessageDialog(frame, "Login failed. Please check your credentials.");
                     }
