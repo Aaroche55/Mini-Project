@@ -76,8 +76,8 @@ public class QuckfireGUI {
             i++;
             
             if (i < QuizLogic.get_questions().size()+1) {
-                textAreaQ.setText("Question: " + QuizLogic.get_questions().get(i-1).toString());
-                textAreaO.setText("Options: " + QuizLogic.get_options().get(i-1).toString());
+                textAreaQ.setText("Question: " + QuizLogic.get_questions().get(i).toString());
+                textAreaO.setText("Options: " + QuizLogic.get_options().get(i).toString());
                 answerField.setText(""); // Clear the answer field for the next answer                   
             } else {
                 JOptionPane.showMessageDialog(null, "You have completed the Quickfire Round!\nYour score is: " + score + "/6");
