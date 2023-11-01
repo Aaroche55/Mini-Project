@@ -105,6 +105,8 @@ public class IntermediateGUI {
                             JOptionPane.showMessageDialog(null,
                                     "You have completed the Novice Round!\nYour score is: " + score + "/" + (i));
                             ScoreLogger.log_score(loginGUI.getUsername(), "intermediate", (int) (((double) score / 6) * 100));
+                            i = 0;
+                            score = 0;
                             intermediateFrame.dispose();
                         }
                     }

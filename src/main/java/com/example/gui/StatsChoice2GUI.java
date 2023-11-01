@@ -89,7 +89,7 @@ public class StatsChoice2GUI {
         leaderboard.addActionListener(new ActionListener() {      //add action listener to the button
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                StatsLeaderboardGUI.createAndShowGUI();
             }
         });
 

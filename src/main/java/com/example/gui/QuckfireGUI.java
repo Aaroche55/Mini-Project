@@ -93,13 +93,16 @@ public class QuckfireGUI {
                     textAreaQ.setText("Question: "
                             + QuizLogic.get_questions().get(i).toString());
                     textAreaO.setText("Options A, B, C: "
-                            + QuizLogic.get_questions().get(i).toString());
+                            + QuizLogic.get_options().get(i).toString());
                     answerField.setText(""); // Clear the answer field
                 } else {
                     // Show the final score and close the frame
                     JOptionPane.showMessageDialog(null,
                             "You have completed the Novice Round!\nYour score is: " + score + "/" + (i));
                     ScoreLogger.log_score(loginGUI.getUsername(), "novice", (int) (((double) score / 6) * 100));
+                    
+                    i = 0;
+                    score = 0;
                     quickfireFrame.dispose();
                 }
             }
