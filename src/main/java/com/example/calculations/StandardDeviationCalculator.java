@@ -5,7 +5,7 @@ import java.util.List;
 import com.example.utilities.ScoreUtil;
 
 public class StandardDeviationCalculator {
-
+    // Returns an array of doubles containing the user's standard deviation and the standard deviation of all users for each mode
     public static double[] get_standardDeviation(String username) {
         double[] std_devs = new double[8];
         String[] modes = {"novice", "intermediate", "advanced", "quickfire"};
@@ -17,17 +17,17 @@ public class StandardDeviationCalculator {
         }
         return std_devs;
     }
-
+    // Returns an array of doubles containing the user's standard deviation
     public static double getUsersStdDevByMode(String username, String mode) {
         List<Integer> scores = ScoreUtil.fetchUserScoresByMode(username, mode);
         return calculateStdDev(scores);
     }
-
+    // Returns an array of doubles containing all user's standard deviation
     public static double getAllUsersStdDevByMode(String mode) {
         List<Integer> scores = ScoreUtil.fetchAllScoresByMode(mode);
         return calculateStdDev(scores);
     }
-
+    
     private static double calculateStdDev(List<Integer> scores) {
         int n = scores.size();
         if (n <= 1) return 0;

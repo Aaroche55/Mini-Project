@@ -74,6 +74,7 @@ public class IntermediateGUI {
             @Override
             public void actionPerformed(ActionEvent event) {
                 try {
+                    // Check if it's the first click
                     if (firstClick) {
                         // For the first click, just show the question and clear the answer field
                         textAreaQ.setText("Question: "
@@ -91,7 +92,7 @@ public class IntermediateGUI {
                         }
                         
                         i++; // Increment i for the next question
-                        
+                        // Check if there are more questions
                         if (i < QuizLogic.getQuestionsByDifficulty("INTERMEDIATE", "questions").size()) {
                             // Update text areas for the next question
                             textAreaQ.setText("Question: "

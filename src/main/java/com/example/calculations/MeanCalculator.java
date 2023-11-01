@@ -4,6 +4,7 @@ import java.util.List;
 import com.example.utilities.ScoreUtil;
 
 public class MeanCalculator {
+    // Returns an array of doubles containing the user's mean and the mean of all users for each mode
     public static double[] get_mean(String username) {
         double[] means = new double[8];
         String[] modes = {"novice", "intermediate", "advanced", "quickfire"};
@@ -16,6 +17,7 @@ public class MeanCalculator {
         return means;
     }
 
+    // Returns an array of doubles containing the user's mean and the mean of all users for each mode
     public static double getUsersMeanByMode(String username, String mode) {
         List<Integer> scores = ScoreUtil.fetchUserScoresByMode(username, mode);  // Fetch scores using ScoreUtil
     
@@ -29,6 +31,7 @@ public class MeanCalculator {
         return sum / scores.size();
     }
 
+    // Returns an array of doubles containing the user's mean and the mean of all users for each mode
     public static double getAllUsersMeanByMode(String mode) {
         List<Integer> scores = ScoreUtil.fetchAllScoresByMode(mode);  // Fetch scores using ScoreUtil
     
@@ -42,6 +45,7 @@ public class MeanCalculator {
         return sum / scores.size();
     }
 
+    // Returns an array of doubles containing the user's mean and the mean of all users for each mode
     public static double getUserMean(String username) {
         List<Integer> scores = ScoreUtil.fetchUserScores(username);  // Fetch scores using ScoreUtil
     

@@ -16,9 +16,11 @@ public class DatabaseInitialiser {
         }
     }
 
+    // The main method to initialise the database
     public static void main(String[] args) {
         String jdbcUrl = "jdbc:sqlite:quiz.db"; 
         
+        // Try-with-resources block to automatically close the connection
         try (Connection conn = DriverManager.getConnection(jdbcUrl)) {
 
             executeSQLFile("src/main/java/com/example/quiz/resources/database_setup.sql", conn);

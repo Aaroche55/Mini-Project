@@ -13,7 +13,8 @@ import javax.crypto.spec.PBEKeySpec;
 public class Authentication {
 
     private static final String JDBC_URL = "jdbc:sqlite:quiz.db";
-
+    
+    // Returns true if the user was successfully registered, false otherwise
     public static boolean signup(String username, String password) throws Exception {
         try (Connection conn = DriverManager.getConnection(JDBC_URL);
              PreparedStatement pstmt = conn.prepareStatement("SELECT username FROM users WHERE username = ?")) {
@@ -25,15 +26,17 @@ public class Authentication {
                 }
             }
         }
-
+        // Generate salt
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
 
+        // Hash password
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
         byte[] hash = factory.generateSecret(spec).getEncoded();
-
+    
+        // Store username, salt, and hash in database
         try (Connection conn = DriverManager.getConnection(JDBC_URL);
              PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users(username, hashed_password, salt) VALUES(?,?,?)")) {
             pstmt.setString(1, username);
@@ -45,7 +48,7 @@ public class Authentication {
         System.out.println("User registered successfully!");
         return true;
     }
-
+    // Returns true if the user was successfully authenticated, false otherwises
     public static boolean check(String username, String password) throws Exception {
         try (Connection conn = DriverManager.getConnection(JDBC_URL);
              PreparedStatement pstmt = conn.prepareStatement("SELECT hashed_password, salt FROM users WHERE username = ?")) {

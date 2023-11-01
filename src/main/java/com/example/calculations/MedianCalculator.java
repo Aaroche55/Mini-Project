@@ -4,7 +4,7 @@ import java.util.List;
 import com.example.utilities.ScoreUtil;
 
 public class MedianCalculator {
-
+    // Returns an array of doubles containing the user's median and the median of all users for each mode
     public static double[] get_median(String username) {
         double[] medians = new double[8];
         String[] modes = {"novice", "intermediate", "advanced", "quickfire"};
@@ -16,7 +16,7 @@ public class MedianCalculator {
         }
         return medians;
     }
-
+    // Returns an array of doubles containing the user's median and the median of all users for each mode
     public static double getUsersMedianByMode(String username, String mode) {
         List<Integer> scores = ScoreUtil.fetchUserScoresByMode(username, mode);
         Collections.sort(scores);
@@ -29,7 +29,7 @@ public class MedianCalculator {
         else
             return (scores.get((n - 1) / 2) + scores.get(n / 2)) / 2.0;
     }
-
+    // Returns an array of doubles containing the user's median and the median of all users for each mode
     public static double getAllUsersMedianByMode(String mode) {
         List<Integer> scores = ScoreUtil.fetchAllScoresByMode(mode);
         Collections.sort(scores);

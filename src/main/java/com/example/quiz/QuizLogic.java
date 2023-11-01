@@ -8,19 +8,23 @@ public class QuizLogic {
 
     private static final String DB_URL = "jdbc:sqlite:quiz.db";
 
+    // A method to return a list of all questions
     public static List<?> getAllQuestions(String part) throws SQLException {
         return processQueryResults(executeQuery("SELECT * FROM Questions"), part);
     }
 
+    // A method to return a list of random questions
     public static List<Map<String, Object>> getRandomQuestions() throws SQLException {
         return executeQuery("SELECT * FROM Questions ORDER BY RANDOM() LIMIT 6");
     }
 
+    // A method to return a list of all questions of a given difficulty
     public static List<?> getQuestionsByDifficulty(String difficulty, String part) throws SQLException {
         String query = "SELECT question, option_a, option_b, option_c, correct_option FROM Questions WHERE difficulty = ? LIMIT 6";
         return processQueryResults(executeQueryWithParameters(query, difficulty), part);
     }
 
+    // A method to return a list of all questions of a given category
     private static List<?> processQueryResults(List<Map<String, Object>> questions, String part) {
         switch (part) {
             case "questions":
@@ -40,21 +44,26 @@ public class QuizLogic {
         }
     }
 
+    // A method to return a list of all questions of a given category
     private static List<Map<String, Object>> executeQuery(String query) throws SQLException {
         return executeQueryWithParameters(query, null);
     }
 
+    // A method to return a list of all questions of a given category
     private static List<Map<String, Object>> executeQueryWithParameters(String query, String parameter) throws SQLException {
         List<Map<String, Object>> questionsList = new ArrayList<>();
+        // Try-with-resources block to automatically close the connection
         try {
             Class.forName("org.sqlite.JDBC");
             try (Connection conn = DriverManager.getConnection(DB_URL);
                  PreparedStatement pstmt = conn.prepareStatement(query)) {
-                 
+
+                // Set the values
                 if (parameter != null) {
                     pstmt.setString(1, parameter);
                 }
 
+                // Set the values
                 try (ResultSet rs = pstmt.executeQuery()) {
                     while (rs.next()) {
                         Map<String, Object> question = new LinkedHashMap<>();
@@ -73,6 +82,7 @@ public class QuizLogic {
         return questionsList;
     }
     
+    // A method to return a list of all random questions
     public static List<Map<String, Object>> randomQuestions;
 
     static {
@@ -83,13 +93,18 @@ public class QuizLogic {
             randomQuestions = Collections.emptyList(); 
         }
     }
-    
+
+    // A method to return a list of questions
     public static List <?> get_questions() {
         return processQueryResults(randomQuestions, "questions");
     }
+
+    // A method to return a list of options
     public static List <?> get_options() {
         return processQueryResults(randomQuestions, "options");
     }
+    
+    // A method to return a list of answers
     public static List <?> get_answers() {
         return processQueryResults(randomQuestions, "answer");
     }

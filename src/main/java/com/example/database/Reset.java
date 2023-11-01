@@ -9,10 +9,12 @@ public class Reset {
     
     private static final String DB_URL = "jdbc:sqlite:quiz.db";
     
+    // A method to reset the database
     public static void resetDatabase() {
         try (Connection conn = DriverManager.getConnection(DB_URL);
              Statement stmt = conn.createStatement()) {
             
+            // Delete all data from the tables
             stmt.execute("DELETE FROM scores");
             stmt.execute("DELETE FROM questions");
             stmt.execute("DELETE FROM users");
