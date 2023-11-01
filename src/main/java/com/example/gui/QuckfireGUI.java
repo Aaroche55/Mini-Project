@@ -6,12 +6,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class QuckfireGUI {
     // Declare 'i' as a class-level field to maintain its state
     @SuppressWarnings("unused")
     private static int i = 0;
     private static int score = 0;
+        private static boolean firstClick = true; // To know if it's the first click
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
            createAndShowGUI();
@@ -66,23 +69,39 @@ public class QuckfireGUI {
     startButton.setBounds(250, 150, 100, 30);
     startButton.addActionListener(new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            // Check the answer before moving to the next question
-            String answer = answerField.getText().toUpperCase();
-            if (i < QuizLogic.get_questions().size() && answer.equals(QuizLogic.get_answers().get(i).toString())) {
-                score++;
-            }
-            
-            i++;
-            
-            if (i < QuizLogic.get_questions().size()+1) {
-                textAreaQ.setText("Question: " + QuizLogic.get_questions().get(i).toString());
-                textAreaO.setText("Options: " + QuizLogic.get_options().get(i).toString());
-                answerField.setText(""); // Clear the answer field for the next answer                   
+        public void actionPerformed(ActionEvent event) {
+            if (firstClick) {
+                // For the first click, just show the question and clear the answer field
+                textAreaQ.setText("Question: "
+                        + QuizLogic.get_questions().get(i).toString());
+                textAreaO.setText("Options A, B, C: "
+                        + QuizLogic.get_options().get(i).toString());
+                answerField.setText(""); // Clear the answer field
+                firstClick = false; // Now it's no longer the first click
             } else {
-                JOptionPane.showMessageDialog(null, "You have completed the Quickfire Round!\nYour score is: " + score + "/6");
-                ScoreLogger.log_score(loginGUI.getUsername(), "quickfire", score);
-                quickfireFrame.dispose();
+                String answer = answerField.getText().toUpperCase(); // Store the value in answer field
+                
+                // Check if previous answer was correct
+                if (answer.equals(QuizLogic.get_answers().get(i).toString())) {
+                    score++;
+                }
+                
+                i++; // Increment i for the next question
+                
+                if (i < QuizLogic.get_questions().size()) {
+                    // Update text areas for the next question
+                    textAreaQ.setText("Question: "
+                            + QuizLogic.get_questions().get(i).toString());
+                    textAreaO.setText("Options A, B, C: "
+                            + QuizLogic.get_questions().get(i).toString());
+                    answerField.setText(""); // Clear the answer field
+                } else {
+                    // Show the final score and close the frame
+                    JOptionPane.showMessageDialog(null,
+                            "You have completed the Novice Round!\nYour score is: " + score + "/" + (i));
+                    ScoreLogger.log_score(loginGUI.getUsername(), "novice", score);
+                    quickfireFrame.dispose();
+                }
             }
         }
     });

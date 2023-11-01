@@ -13,6 +13,8 @@ public class AdvancedGUI {
     // Declare 'i' as a class-level field to maintain its state
     @SuppressWarnings("unused")
     private static int i = 0;
+    private static boolean firstClick = true; // To know if it's the first click
+
     private static int score = 0;
 
     public static void main(String[] args) {
@@ -71,25 +73,39 @@ public class AdvancedGUI {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                // Check the answer before moving to the next question
-                String answer = answerField.getText().toUpperCase();
                 try {
-                    if (i < QuizLogic.getQuestionsByDifficulty("ADVANCED", "questions").size() && answer
-                            .equals(QuizLogic.getQuestionsByDifficulty("ADVANCED", "answer").get(i).toString())) {
-                        score++;
-                    }
-                    i++;
-                    if (i < QuizLogic.getQuestionsByDifficulty("ADVANCED", "questions").size() + 1) {
+                    if (firstClick) {
+                        // For the first click, just show the question and clear the answer field
                         textAreaQ.setText("Question: "
                                 + QuizLogic.getQuestionsByDifficulty("ADVANCED", "questions").get(i).toString());
                         textAreaO.setText("Options A, B, C: "
                                 + QuizLogic.getQuestionsByDifficulty("ADVANCED", "options").get(i).toString());
-                        answerField.setText(""); // Clear the answer field for the next answer
+                        answerField.setText(""); // Clear the answer field
+                        firstClick = false; // Now it's no longer the first click
                     } else {
-                        JOptionPane.showMessageDialog(null,
-                                "You have completed the Advanced Round!\nYour score is: " + score + "/6");
-                        ScoreLogger.log_score(loginGUI.getUsername(), "advanced", score);
-                        advancedFrame.dispose();
+                        String answer = answerField.getText().toUpperCase(); // Store the value in answer field
+                        
+                        // Check if previous answer was correct
+                        if (answer.equals(QuizLogic.getQuestionsByDifficulty("ADVANCED", "answer").get(i).toString())) {
+                            score++;
+                        }
+                        
+                        i++; // Increment i for the next question
+                        
+                        if (i < QuizLogic.getQuestionsByDifficulty("ADVANCED", "questions").size()) {
+                            // Update text areas for the next question
+                            textAreaQ.setText("Question: "
+                                    + QuizLogic.getQuestionsByDifficulty("ADVANCED", "questions").get(i).toString());
+                            textAreaO.setText("Options A, B, C: "
+                                    + QuizLogic.getQuestionsByDifficulty("ADVANCED", "options").get(i).toString());
+                            answerField.setText(""); // Clear the answer field
+                        } else {
+                            // Show the final score and close the frame
+                            JOptionPane.showMessageDialog(null,
+                                    "You have completed the Novice Round!\nYour score is: " + score + "/" + (i));
+                            ScoreLogger.log_score(loginGUI.getUsername(), "advanced", score);
+                            advancedFrame.dispose();
+                        }
                     }
                 } catch (SQLException e) {
                     // Handle the exception here
