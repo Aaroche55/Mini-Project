@@ -17,4 +17,4 @@ INSERT INTO questions (category, difficulty, question, option_a, option_b, optio
 ('CS', 'INTERMEDIATE', ' In a lattice, which property ensures that there is both a unique greatest lower bound (infimum) and a unique least upper bound (supremum) for any pair of elements in the lattice?', 'Join', ' Meet', ' Distributivity', 'C'),
 ('CS', 'INTERMEDIATE', 'Which data structure follows the Last-In-First-Out (LIFO) principle?.', 'Queue', 'Stack', 'Linked List', 'B'),
 ('CS', 'ADVANCED', 'Which programming paradigm emphasizes the use of functions and immutability?', 'Object-Oriented Programming (OOP)', 'Functional Programming (FP)', 'Procedural Programming', 'B'),
-('CS', 'ADVANCED', 'What is the primary purpose of an Abstract Syntax Tree (AST) in a compiler?', 'To represent the hierarchical structure of a programs source code', 'Stack To optimize code execution', 'To store metadata about program variables', 'A');
+('CS', 'ADVANCED', 'What is the primary purpose of an Abstract Syntax Tree (AST) in a compiler?', 'To represent the hierarchical structure of a programs source code', 'Stack To optimize code execution', 'To store metadata about program variables','A');
