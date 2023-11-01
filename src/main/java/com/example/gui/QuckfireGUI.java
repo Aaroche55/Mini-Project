@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class QuckfireGUI {
     // Declare 'i' as a class-level field to maintain its state
@@ -99,7 +98,7 @@ public class QuckfireGUI {
                     // Show the final score and close the frame
                     JOptionPane.showMessageDialog(null,
                             "You have completed the Novice Round!\nYour score is: " + score + "/" + (i));
-                    ScoreLogger.log_score(loginGUI.getUsername(), "novice", score);
+                    ScoreLogger.log_score(loginGUI.getUsername(), "novice", (int) (((double) score / 6) * 100));
                     quickfireFrame.dispose();
                 }
             }

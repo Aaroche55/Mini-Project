@@ -9,16 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class loginGUI {
 
-    static String username;
+    public static String future_username;
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             createAndShowGUI();
         });
     }
-    public static String getUsername() {
-        return username;
-    }
-
+    
     private static void createAndShowGUI() {
         //Frame for the login page
         JFrame frame = new JFrame("Login Page");
@@ -44,27 +41,27 @@ public class loginGUI {
         headingLabel.setForeground(Color.BLACK);
         headingLabel.setBounds(200, 10, 250, 30); // Set coordinates and size
         formPanel.add(headingLabel);
-
+        
         // Additional heading label above the username field
         JLabel usernameHeadingLabel = new JLabel("  Please enter your credentials:");
         usernameHeadingLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         usernameHeadingLabel.setForeground(Color.GRAY);
         usernameHeadingLabel.setBounds(150, 50, 300, 20); // Set coordinates and size
         formPanel.add(usernameHeadingLabel);
-
+        
         //ColoUrful labels and text fields for the username and password
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setForeground(Color.BLUE);
         usernameLabel.setBounds(50, 80, 100, 20); // Set coordinates and size
         JTextField usernameField = new JTextField();
         usernameField.setBounds(160, 80, 300, 20); // Set coordinates and size
-
+        
         JLabel passwordLabel = new JLabel("Password:");
         passwordLabel.setForeground(Color.RED);
         passwordLabel.setBounds(50, 110, 100, 20); // Set coordinates and size
         JPasswordField passwordField = new JPasswordField();
         passwordField.setBounds(160, 110, 300, 20); // Set coordinates and size
-
+        
         //Login and Sign Up buttons
         JButton loginButton = new JButton("Login");
         loginButton.setBackground(Color.BLUE);
@@ -80,6 +77,7 @@ public class loginGUI {
                     boolean check = Authentication.check(username, password);
                     if (check) {
                         JOptionPane.showMessageDialog(frame, "Login successful");
+                        future_username = username;
                         frame.dispose();
                         GUI.createAndShowGUI();
                     } else {
@@ -99,7 +97,7 @@ public class loginGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
             	try {
-                    username = usernameField.getText();
+                    String username = usernameField.getText();
                     String password = new String(passwordField.getPassword());
                     if (Authentication.signup(username, password)) {
                         JOptionPane.showMessageDialog(frame, "Account created successfully.");
@@ -115,22 +113,25 @@ public class loginGUI {
         
         formPanel.add(headingLabel);
         formPanel.add(usernameHeadingLabel);
-
+        
         // Add labels and text fields to the formPanel
         formPanel.add(usernameLabel);
         formPanel.add(usernameField);
         formPanel.add(passwordLabel);
         formPanel.add(passwordField);
-
+        
         // Add buttons to the formPanel
         formPanel.add(loginButton);
         formPanel.add(signUpButton);
-
+        
         // Add the formPanel to the frame
         frame.add(formPanel); // This line is necessary to display the components
-
+        
         // Make the frame visible
         frame.setVisible(true);
     } 
-     
+    
+    public static String getUsername() {
+        return future_username;
+    }
 }
