@@ -17,17 +17,20 @@ public class StandardDeviationCalculator {
         }
         return std_devs;
     }
+
     // Returns an array of doubles containing the user's standard deviation
     public static double getUsersStdDevByMode(String username, String mode) {
         List<Integer> scores = ScoreUtil.fetchUserScoresByMode(username, mode);
         return calculateStdDev(scores);
     }
+
     // Returns an array of doubles containing all user's standard deviation
     public static double getAllUsersStdDevByMode(String mode) {
         List<Integer> scores = ScoreUtil.fetchAllScoresByMode(mode);
         return calculateStdDev(scores);
     }
     
+    // Returns a double of the standard deviation based on the list of scores
     private static double calculateStdDev(List<Integer> scores) {
         int n = scores.size();
         if (n <= 1) return 0;

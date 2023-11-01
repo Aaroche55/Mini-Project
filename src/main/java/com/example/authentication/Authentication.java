@@ -48,6 +48,7 @@ public class Authentication {
         System.out.println("User registered successfully!");
         return true;
     }
+    
     // Returns true if the user was successfully authenticated, false otherwises
     public static boolean check(String username, String password) throws Exception {
         try (Connection conn = DriverManager.getConnection(JDBC_URL);

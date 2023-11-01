@@ -94,17 +94,17 @@ public class QuizLogic {
         }
     }
 
-    // A method to return a list of questions
+    // A method to return a list of quickfire questions
     public static List <?> get_questions() {
         return processQueryResults(randomQuestions, "questions");
     }
 
-    // A method to return a list of options
+    // A method to return a list of quickfire options
     public static List <?> get_options() {
         return processQueryResults(randomQuestions, "options");
     }
     
-    // A method to return a list of answers
+    // A method to return a list of quickfire answers
     public static List <?> get_answers() {
         return processQueryResults(randomQuestions, "answer");
     }
