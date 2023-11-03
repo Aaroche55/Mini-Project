@@ -12,7 +12,7 @@ public class ScoreUtil {
 
     private static final String DB_URL = "jdbc:sqlite:quiz.db";
     
-    // A method to log a user's score
+    // A method to fetch a user's score
     public static List<Integer> fetchUserScoresByMode(String username, String mode) {
         List<Integer> scores = new ArrayList<>();
         String sql = "SELECT score FROM scores WHERE username = ? AND quiz_mode = ?";
