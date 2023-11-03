@@ -73,7 +73,7 @@ public class TestGUI {
         advancedButton.addActionListener(new ActionListener() {      //add action listener to the button
             @Override
             public void actionPerformed(ActionEvent e) {
-                QuckfireGUI.createAndShowGUI();
+                AdvancedGUI.createAndShowGUI();
             }
         });
 
