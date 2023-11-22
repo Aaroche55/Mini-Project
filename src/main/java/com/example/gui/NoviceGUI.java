@@ -38,12 +38,12 @@ public class NoviceGUI {
 
         // Panel for the form
         JPanel novicePanel = new JPanel();
-        novicePanel.setLayout(new GridLayout(3, 1, 10, 10)); // Set layout to null (absolute positioning)
+        novicePanel.setLayout(null); // Set layout to null (absolute positioning)
         novicePanel.setBackground(Color.LIGHT_GRAY); // set background panel
 
         // Create a label to display questions from QuizManager
         JTextArea textAreaQ = new JTextArea();
-        textAreaQ.setBounds(-100, 10, 300, 100);
+        textAreaQ.setBounds(50, 100, 650, 100);
         textAreaQ.setLineWrap(true);
         textAreaQ.setWrapStyleWord(true);
         textAreaQ.setBackground(Color.LIGHT_GRAY);
@@ -52,7 +52,7 @@ public class NoviceGUI {
 
         // Create a label to display options from QuizManager
         JTextArea textAreaO = new JTextArea();
-        textAreaO.setBounds(10, 10, 250, 300);
+        textAreaO.setBounds(800, 100, 650, 300);
         textAreaO.setLineWrap(true);
         textAreaO.setWrapStyleWord(true);
         textAreaO.setBackground(Color.LIGHT_GRAY);
@@ -61,7 +61,7 @@ public class NoviceGUI {
 
         // Create text field for user to enter answer
         JTextField answerField = new JTextField("Please enter answer: A, B, or C");
-        answerField.setBounds(160, 110, 300, 20);
+        answerField.setBounds(500, 550, 500, 50);
 
         // Start/Submit button to fetch and display next question, and also to submit
         // answer
@@ -69,7 +69,7 @@ public class NoviceGUI {
         JButton startButton = new JButton("Start/Submit");
         startButton.setBackground(Color.BLUE);
         startButton.setForeground(Color.WHITE);
-        startButton.setBounds(250, 150, 100, 30);
+        startButton.setBounds(625, 625, 250, 50);
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -79,7 +79,7 @@ public class NoviceGUI {
                         // For the first click, just show the question and clear the answer field
                         textAreaQ.setText("Question: "
                                 + QuizLogic.getQuestionsByDifficulty("NOVICE", "questions").get(i).toString());
-                        textAreaO.setText("Options A, B, C: "
+                        textAreaO.setText("Options [A, B, C]: "
                                 + QuizLogic.getQuestionsByDifficulty("NOVICE", "options").get(i).toString());
                         answerField.setText(""); // Clear the answer field
                         firstClick = false; // Now it's no longer the first click
@@ -117,6 +117,19 @@ public class NoviceGUI {
                 }
             }
         });
+
+         // Add Exit button
+         JButton exitButton = new JButton("Exit");
+         exitButton.setBackground(Color.RED);
+         exitButton.setForeground(Color.WHITE);
+         exitButton.setBounds(1200, 625, 250, 50);
+         exitButton.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent event) {
+                 JOptionPane.showMessageDialog(null, "Exiting the round will result in a score of 0.");
+                 noviceFrame.dispose();
+             }
+         });
 
         novicePanel.add(textAreaQ);
         novicePanel.add(textAreaO);
