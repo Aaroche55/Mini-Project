@@ -12,7 +12,7 @@ public class GUI {
     }
     public static void createAndShowGUI(){
         //Frame for the choice page
-        JFrame frame = new JFrame("Flinder");
+        JFrame frame = new JFrame("Kwizzy");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 300); // Adjusted size
         frame.setLayout(new BorderLayout());
@@ -30,14 +30,14 @@ public class GUI {
         formPanel.setBackground(Color.LIGHT_GRAY); //set background panel
 
         // Heading label
-        JLabel headingLabel = new JLabel("Welcome to Flinder");
+        JLabel headingLabel = new JLabel("Welcome to Kwizzy!");
         headingLabel.setFont(new Font("Gotham Rounded", Font.BOLD, 24));
         headingLabel.setForeground(Color.BLACK);
         headingLabel.setBounds(200, 10, 250, 30); // Set coordinates and size
         formPanel.add(headingLabel);
 
         // Additional heading label above the options
-        JLabel subheadingLabel = new JLabel("Please select an game mode");
+        JLabel subheadingLabel = new JLabel("Please select a game mode");
         subheadingLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         subheadingLabel.setForeground(Color.GRAY);
         subheadingLabel.setBounds(150, 50, 300, 20); // Set coordinates and size
