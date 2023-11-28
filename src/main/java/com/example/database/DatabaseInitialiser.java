@@ -25,11 +25,12 @@ public class DatabaseInitialiser {
 
             executeSQLFile("src/main/java/com/example/quiz/resources/database_setup.sql", conn);
             executeSQLFile("src/main/java/com/example/quiz/resources/questions_insert.sql", conn);
-
+            
             System.out.println("Database setup complete!");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }

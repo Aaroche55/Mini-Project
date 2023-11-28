@@ -16,7 +16,7 @@ public class loginGUI {
         });
     }
     
-    private static void createAndShowGUI() {
+    public static void createAndShowGUI() {
         //Frame for the login page
         JFrame frame = new JFrame("Login Page");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +36,7 @@ public class loginGUI {
         formPanel.setBackground(Color.LIGHT_GRAY); //set background panel
 
         // Heading label
-        JLabel headingLabel = new JLabel("Welcome to Flinder");
+        JLabel headingLabel = new JLabel("Welcome to Kwizzy!");
         headingLabel.setFont(new Font("Gotham Rounded", Font.BOLD, 24));
         headingLabel.setForeground(Color.BLACK);
         headingLabel.setBounds(200, 10, 250, 30); // Set coordinates and size
