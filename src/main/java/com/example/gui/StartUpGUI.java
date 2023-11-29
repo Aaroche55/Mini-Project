@@ -30,16 +30,16 @@ public class StartUpGUI {
         
         // Heading label
         JLabel headingLabel = new JLabel("Kwizzy");
-        headingLabel.setFont(new Font("Goudy Stout Regular", Font.BOLD, 24));
+        headingLabel.setFont(new Font("Goudy Stout Regular", Font.BOLD, 30));
         headingLabel.setForeground(Color.BLACK);
-        headingLabel.setBounds(200, 10, 250, 30); // Set coordinates and size
+        headingLabel.setBounds(241, 50, 140, 30); // Set coordinates and size
 
 
         // Add Start button
         JButton start = new JButton("Start");
         start.setBackground(Color.RED);
         start.setForeground(Color.WHITE);
-        start.setBounds(50, 125, 200, 50); // Set coordinates and size
+        start.setBounds(200, 125, 200, 50); // Set coordinates and size
         start.addActionListener(new ActionListener() {      //add action listener to the button
             @Override
             public void actionPerformed(ActionEvent e) {
